@@ -6,6 +6,8 @@ RUN pip3 install weasyprint gunicorn flask
 RUN mkdir /myapp
 WORKDIR /myapp
 ADD ./wsgi.py /myapp
+ADD ./templates /myapp/templates
+
 RUN mkdir /root/.fonts
 #ADD ./fonts/* /root/.fonts/
 RUN apk --no-cache add msttcorefonts-installer fontconfig && \

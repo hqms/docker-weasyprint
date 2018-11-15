@@ -3,7 +3,8 @@
 import json
 import logging
 
-from flask import Flask, request, make_response
+from flask import Flask, request, make_response, jsonify, render_template
+
 import weasyprint
 from weasyprint import HTML
 
@@ -37,42 +38,25 @@ def setup_logging():
 @app.route('/')
 def home():
     return '''
-        <h1>PDF Generator</h1>
-        <p>The following endpoints are available:</p>
-        <ul>
-            <li>POST to <code>/pdf?filename=myfile.pdf</code>. The body should
-                contain html</li>
-            <li>POST to <code>/multiple?filename=myfile.pdf</code>. The body
-                should contain a JSON list of html strings. They will each
-                be rendered and combined into a single pdf</li>
-        </ul>
+        OK
     '''
 
 
-@app.route('/pdf', methods=['POST'])
+@app.route('/a', methods=['POST'])
 def generate():
     name = request.args.get('filename', 'unnamed.pdf')
     app.logger.info('POST  /pdf?filename=%s' % name)
-    html = HTML(string=request.data)
+    data = json.loads(request.data)
+    app.logger.info(data)
+
+    rendered = render_template('label.html', data=data, barang=data.items)
+
+    html = HTML(string=rendered)
     pdf = html.write_pdf()
     response = make_response(pdf)
     response.headers['Content-Type'] = 'application/pdf'
     response.headers['Content-Disposition'] = 'inline;filename=%s' % name
     app.logger.info(' ==> POST  /pdf?filename=%s  ok' % name)
-    return response
-
-
-@app.route('/multiple', methods=['POST'])
-def multiple():
-    name = request.args.get('filename', 'unnamed.pdf')
-    app.logger.info('POST  /multiple?filename=%s' % name)
-    htmls = json.loads(request.data.decode('utf-8'))
-    documents = [HTML(string=html).render() for html in htmls]
-    pdf = documents[0].copy([page for doc in documents for page in doc.pages]).write_pdf()
-    response = make_response(pdf)
-    response.headers['Content-Type'] = 'application/pdf'
-    response.headers['Content-Disposition'] = 'inline;filename=%s' % name
-    app.logger.info(' ==> POST  /multiple?filename=%s  ok' % name)
     return response
 
 
