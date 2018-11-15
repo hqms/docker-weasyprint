@@ -8,5 +8,8 @@ WORKDIR /myapp
 ADD ./wsgi.py /myapp
 RUN mkdir /root/.fonts
 #ADD ./fonts/* /root/.fonts/
+RUN apk --no-cache add msttcorefonts-installer fontconfig && \
+    update-ms-fonts && \
+    fc-cache -f
 
 CMD gunicorn --bind 0.0.0.0:5001 wsgi:app
