@@ -117,12 +117,12 @@
     </tr>
 </table>
 <table style="width: 400px; border: 1px dashed #dedede;">
-    <tr style="border-top: 1px solid #444444;">
+    <tr style="border-top: 1px solid #444444; border-bottom: 1px solid #444444;">
         <th style="padding: 10px; width: 350px; font-weight: bold; vertical-align: top;">Nama Barang</th>
         <th style="padding: 10px; width: 50px; font-weight: bold; text-align: center; vertical-align: top;">QTY.</th>
     </tr>
     {% for item in data.item %}
-    <tr style="border-top: 1px solid #dedede;">
+    <tr >
         <td style="padding: 10px;">{{ item.name }}</td>
         <td style="padding: 10px; text-align: right;">{{ item.qty }}</td>
     </tr>
