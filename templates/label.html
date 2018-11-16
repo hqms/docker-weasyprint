@@ -3,91 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-<style type="text/css">
+    <style type="text/css">
 
-body {
-	-webkit-text-size-adjust: 100%;
-	-ms-text-size-adjust: 100%;
-}
-body, p, h1, h2, h3, h4, h5, h6, img, table, td, #emailBody {
-	margin-top: 0;
-	margin-left: 0;
-	margin-right: 0;
-	margin-bottom: 0;
-	padding-top: 0;
-	padding-bottom: 0;
-	padding-left: 0;
-	padding-right: 0;
-}
-a, #outlook a {
-	padding-top: 0;
-	padding-bottom: 0;
-	padding-left: 0;
-	padding-right: 0;
-	display: inline-block;
-}
-a, a span {
-	text-decoration: none;
-}
-a img {
-	border: none;
-}
-img {
-	height: auto;
-	width: auto;
-	line-height: 100%;
-	outline: none;
-	text-decoration: none;
-	-ms-interpolation-mode: bicubic;
-}
-.imageFix {
-	display: block;
-}
-table {
-	mso-table-lspace: 0pt;
-	mso-table-rspace: 0pt;
-}
-table, td {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-.ExternalClass {
-	display: block !important;
-	width: 100%;
-}
-.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
-	line-height: 100%;
-}
-.ReadMsgBody, .ExternalClass {
-	width: 100%;
-}
-/* Default Typography */
-td, th, p, a, li, h1, h2, h3, h4, h5, h6 {
-	-webkit-text-size-adjust : none;
-	font-family: Arial, Helvetica, sans-serif;
-    font-size: 10pt;
-}
-h1, h2, h3, h4, h5, h6 {
-	margin-bottom: 5px;	/* Outlook.com default */
-}
-</style>
+        body {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            margin: 10pt 10pt 10pt 10pt;
+        }
+
+        body, p, h1, h2, h3, h4, h5, h6, img, table, td, #emailBody {
+            margin-top: 0;
+            margin-left: 0;
+            margin-right: 0;
+            margin-bottom: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        a, #outlook a {
+            padding-top: 0;
+            padding-bottom: 0;
+            padding-left: 0;
+            padding-right: 0;
+            display: inline-block;
+        }
+
+        a, a span {
+            text-decoration: none;
+        }
+
+        a img {
+            border: none;
+        }
+
+        img {
+            height: auto;
+            width: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+            -ms-interpolation-mode: bicubic;
+        }
+
+        .imageFix {
+            display: block;
+        }
+
+        table {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+        table, td {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        .ExternalClass {
+            display: block !important;
+            width: 100%;
+        }
+
+        .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
+            line-height: 100%;
+        }
+
+        .ReadMsgBody, .ExternalClass {
+            width: 100%;
+        }
+
+        /* Default Typography */
+        td, th, p, a, li, h1, h2, h3, h4, h5, h6 {
+            -webkit-text-size-adjust: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 8pt;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 10pt;
+            margin-bottom: 5px; /* Outlook.com default */
+        }
+        small{
+            font-size: 6pt;
+        }
+    </style>
 
 </head>
 <body>
-<table style="width: 400px; border: 1px dashed #dedede;">
-<tr style="width: 20px;">
-    <td style="width: 280px; padding: 10px">
-        <strong>Kepada : {{ data.name }}</strong><br />
-        {{ data.address }}
-    </td>
-    <td style="width: 120px; padding: 10px; text-align: center">
-        <strong>Invoice # <br />
-            {{ data.invoice }}</strong>
-        <br />
-        <img src="{{ data.courier }}" style="width: 100px;">
+<table style="width: 400px; border: 1px dashed #dedede; border-bottom-width: 0;">
+    <tr>
+        <th colspan="3" style="padding: 10px;">
+            <h2>{{ data.shop_name }}</h2>
+            <small>No. HP: {{ data.shop_phone }}</small>
+        </th>
+    </tr>
+    <tr>
+        <td style="width: 200px; padding: 10px">
+            <strong>Invoice # {{ data.invoice }} <br />&nbsp;</strong>
+            <p>
+                <strong>Kepada : {{ data.name }}</strong><br/>
+                {{ data.address }}
+            </p>
 
-    </td>
-</tr>
+        </td>
+        <td style="width: 120px; padding: 0 10px; text-align: center; vertical-align: top;">
+            <img src="{{ data.courier }}" style="width: 100px; ">
+        </td>
+        <td style="width: 80px; vertical-align: top;">
+            <strong>{{ data.courier_package }}</strong>
+        </td>
+    </tr>
+</table>
+<table style="width: 400px; border: 1px dashed #dedede;">
     <tr style="border-top: 1px solid #444444;">
         <th style="padding: 10px; width: 350px; font-weight: bold; vertical-align: top;">Nama Barang</th>
         <th style="padding: 10px; width: 50px; font-weight: bold; text-align: center; vertical-align: top;">QTY.</th>
@@ -98,7 +127,11 @@ h1, h2, h3, h4, h5, h6 {
         <td style="padding: 10px; text-align: center">{{ item.qty }}</td>
     </tr>
     {% endfor %}
-
+<tr>
+    <td colspan="2" style="padding: 10px; text-align: right;">
+        <small>Powered By : Automate.id</small>
+    </td>
+</tr>
 </table>
 </body>
 </html>
