@@ -4,11 +4,13 @@ import json
 import logging
 
 from flask import Flask, request, make_response, jsonify, render_template
+from flask_cors import CORS
 
 import weasyprint
 from weasyprint import HTML
 
 app = Flask('pdf')
+CORS(app)
 
 @app.route('/health')
 def index():

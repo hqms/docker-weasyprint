@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 RUN apk --update --upgrade add bash cairo pango gdk-pixbuf py3-cffi py3-pillow py-lxml
-RUN pip3 install weasyprint gunicorn flask
+RUN pip3 install weasyprint gunicorn flask flask-cors
 
 RUN mkdir /myapp
 WORKDIR /myapp
