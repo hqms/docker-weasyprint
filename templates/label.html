@@ -133,5 +133,75 @@
     </td>
 </tr>
 </table>
+<hr />
+<table style="width: 600px; border: 1px dashed #dedede; border-bottom-width: 0;">
+    <tr>
+        
+    </tr>
+    <tr>
+        
+        
+    </tr>
+</table>
+<table style="width: 600px; border: 1px dashed #dedede;">
+    <tr>
+        <th colspan="4" style="padding: 10px;">
+            <h1>{{ data.shop_name }}</h1>
+            <small>No. HP: {{ data.shop_phone }}</small>
+        </th>
+    </tr>
+    <tr >
+        <td style="padding: 10px" colspan="4">
+            <h2>Receipt # {{ data.invoice }} <br />&nbsp;</h2>            
+
+        </td>
+    </tr>
+    <tr style="border-top: 1px solid #444444; border-bottom: 1px solid #444444;">
+        <th style="padding: 10px; width: 350px; font-weight: bold; vertical-align: top;">Nama Barang</th>
+        <th style="padding: 10px; width: 50px; font-weight: bold; text-align: center; vertical-align: top;">QTY.</th>
+        <th style="padding: 10px; width: 100px; font-weight: bold; text-align: center; vertical-align: top;">Harga Barang</th>
+        <th style="padding: 10px; width: 100px; font-weight: bold; text-align: center; vertical-align: top;">Sub Total</th>
+    </tr>
+    {% for item in data.item %}
+    <tr >
+        <td style="padding: 10px;">{{ item.name }}</td>
+        <td style="padding: 10px; text-align: right;">{{ item.qty }}</td>
+        <td style="padding: 10px; text-align: right;">{{ item.price}}</td>
+        <td style="padding: 10px; text-align: right;">{{ item.sub_total }}</td>
+    </tr>
+    {% endfor %}
+    <tr >
+        <td colspan="3" style="padding: 10px; text-align: right; background: #eaeaea; ">
+            <h3>Subtotal</h3>
+        </td>
+        <td style="padding: 10px; text-align: right;  background: #eaeaea;"><h3>{{ data.item_total }}</h3></td>
+    </tr>
+    <tr>
+        <td colspan="4">&nbsp;</td>
+    </tr>
+    {% for item in data.courier_item %}
+    <tr >
+        <td style="padding: 10px;">{{ item.name }}</td>
+        <td style="padding: 10px; text-align: right;">{{ item.qty }}</td>
+        <td style="padding: 10px; text-align: right;">{{ item.price}}</td>
+        <td style="padding: 10px; text-align: right;">{{ item.sub_total }}</td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <td colspan="3" style="padding: 10px; text-align: right; background: #eaeaea; ">
+            <h3>Subtotal</h3>
+        </td>
+        <td style="padding: 10px; text-align: right;  background: #eaeaea;"><h3>{{ data.courier_total }}</h3></td>
+    </tr>
+    <tr>
+        <td colspan="4">&nbsp;</td>
+    </tr>
+    <tr style="margin-bottom: 10px;  ">
+        <td colspan="3" style="padding: 10px; text-align: right; background: #eaeaea;">
+            <h3>Total</h3>
+        </td>
+        <td style="padding: 10px; text-align: right; background: #eaeaea;"><h3>{{ data.total }}</h3></td>
+    </tr>
+</table>
 </body>
 </html>

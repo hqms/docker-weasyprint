@@ -14,4 +14,6 @@ RUN apk --no-cache add msttcorefonts-installer fontconfig && \
     update-ms-fonts && \
     fc-cache -f
 
+EXPOSE 5001
+
 CMD gunicorn --bind 0.0.0.0:5001 wsgi:app
